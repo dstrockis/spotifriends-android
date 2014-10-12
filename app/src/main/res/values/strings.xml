@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Spotifriends</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button">Check Playing</string>
+    <string name="backend_base_url">http://104.152.106.15:8080</string>
+    <string name="fb_app_id">1398948947016016</string>
+    <string name="sp_auth_button">Log in to Spotify</string>
+
+</resources>
