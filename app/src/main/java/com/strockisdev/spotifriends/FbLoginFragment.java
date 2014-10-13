@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.Session;
 import com.facebook.SessionState;
@@ -15,6 +17,8 @@ import com.facebook.widget.LoginButton;
 
 import java.nio.BufferUnderflowException;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class FbLoginFragment extends Fragment {
@@ -34,10 +38,9 @@ public class FbLoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.login_main, container, false);
 
         LoginButton fbAuthButton = (LoginButton) view.findViewById(R.id.fb_auth_button);
-        Log.d("MainFragment", "" + fbAuthButton.getTextSize());
-        Log.d("MainFragment", "" + fbAuthButton.getTypeface().toString());
         fbAuthButton.setFragment(this);
         fbAuthButton.setReadPermissions(Arrays.asList("public_profile"));
+        //TODO: Do I need to update UI here as well, or is onSessionStateChanged called?
 
         return view;
     }
@@ -50,9 +53,30 @@ public class FbLoginFragment extends Fragment {
     }
 
     private void onSessionStateChange(Session session, SessionState state, Exception exception) {
+        TextView stepTextView = (TextView)getActivity().findViewById(R.id.fb_auth_step_1);
+        ImageView doneImageView = (ImageView)getActivity().findViewById(R.id.fb_complete_check);
         if (state.isOpened()) {
             Log.i("MainFragment", "Logged in...");
+            stepTextView.setVisibility(View.INVISIBLE);
+            doneImageView.setVisibility(View.VISIBLE);
+
+//            SpTokenCache tokenCache = new SpTokenCache(getActivity());
+//            if (tokenCache.getAccessToken() != null) {
+//                TimerTask task = new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        Intent newIntent = new Intent(
+//                                FbLoginFragment.this.getActivity(), MainActivity.class);
+//                        startActivity(newIntent);
+//                    }
+//                };
+//                Timer t = new Timer();
+//                t.schedule(task, 5000);
+//            }
+
         } else if (state.isClosed()) {
+            stepTextView.setVisibility(View.VISIBLE);
+            doneImageView.setVisibility(View.INVISIBLE);
             Log.i("MainFragment", "Logged out...");
         }
     }

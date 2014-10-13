@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:com.strockisdev.spotifriends="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,15 +10,56 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_height="@dimen/spacer_view_medium" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/actionbarblack_rounded"
+        android:paddingTop="@dimen/text_small_padding"
+        android:paddingBottom="@dimen/text_large_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/button_large_padding"
+            android:paddingLeft="@dimen/button_large_padding">
+
+            <com.strockisdev.spotifriends.RobotoTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_welcome"
+                android:textSize="@dimen/text_size_header"
+                android:textColor="@color/white"
+                com.strockisdev.spotifriends:typeface="Roboto-Thin.ttf"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/horizontal_line_width"
+                android:background="@color/android_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_instructions"
+                android:textSize="@dimen/baseline_text_size"
+                android:textColor="@color/android_gray"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacer_view_small" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:background="@drawable/actionbarblack_rounded">
@@ -27,13 +69,58 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingTop="@dimen/button_large_padding"
+            android:paddingBottom="@dimen/button_small_padding"
+            android:paddingRight="@dimen/button_large_padding">
 
-            <com.facebook.widget.LoginButton
-                android:layout_width="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fb_auth_button"
-                android:layout_gravity="center_horizontal" />
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.strockisdev.spotifriends.RobotoTextView
+                        android:id="@+id/fb_auth_step_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/login_step_1"
+                        android:textSize="@dimen/text_size_header"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:paddingRight="@dimen/button_large_padding"
+                        com.strockisdev.spotifriends:typeface="Roboto-Thin.ttf"/>
+
+                    <ImageView
+                        android:id="@+id/fb_complete_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_action_accept"
+                        android:visibility="invisible"
+                        android:layout_centerVertical="true"
+                        android:layout_alignRight="@id/fb_auth_step_1"
+                        android:paddingRight="@dimen/button_large_padding"/>
+
+                    </RelativeLayout>
+
+                <com.facebook.widget.LoginButton
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fb_auth_button"
+                    android:layout_gravity="right"/>
+
+                </LinearLayout>
+
+
 
             </LinearLayout>
 
@@ -42,21 +129,68 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:paddingTop="@dimen/button_small_padding"
+            android:paddingBottom="@dimen/button_large_padding"
+            android:paddingRight="@dimen/button_large_padding">
 
-            <Button
-                android:layout_width="200dp"
-                android:layout_height="45dp"
-                android:id="@+id/sp_auth_button"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/sp_auth_button"
-                android:background="@drawable/spgreen_rounded"
-                android:textColor="@color/white"
-                android:textSize="16.0sp"
-                android:textStyle="bold"
-                android:drawableLeft="@drawable/sp_logo"
-                android:paddingLeft="7dp"
-                android:paddingRight="27dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.strockisdev.spotifriends.RobotoTextView
+                        android:id="@+id/sp_auth_step_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/login_step_2"
+                        android:textSize="@dimen/text_size_header"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:paddingRight="@dimen/button_large_padding"
+                        com.strockisdev.spotifriends:typeface="Roboto-Thin.ttf"/>
+
+                    <ImageView
+                        android:id="@+id/sp_complete_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_action_accept"
+                        android:visibility="invisible"
+                        android:layout_centerVertical="true"
+                        android:layout_alignRight="@+id/sp_auth_step_2"
+                        android:paddingRight="@dimen/button_large_padding"/>
+
+                    </RelativeLayout>
+
+
+
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="45dp"
+                    android:id="@+id/sp_auth_button"
+                    android:layout_gravity="right"
+                    android:text="@string/sp_auth_button_log_in"
+                    android:background="@drawable/spgreen_rounded"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fb_text_size"
+                    android:textStyle="bold"
+                    android:drawableLeft="@drawable/sp_logo"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="27dp"
+                    android:onClick="onSpotifyLoginButtonClick"
+                    />
+
+                </LinearLayout>
 
             </LinearLayout>
 

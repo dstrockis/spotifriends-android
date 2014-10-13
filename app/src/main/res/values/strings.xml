@@ -7,6 +7,16 @@
     <string name="button">Check Playing</string>
     <string name="backend_base_url">http://104.152.106.15:8080</string>
     <string name="fb_app_id">1398948947016016</string>
-    <string name="sp_auth_button">Log in to Spotify</string>
+    <string name="sp_auth_button_log_in">Log in to Spotify</string>
+    <string name="sp_auth_button_logged_in">Logged In</string>
+    <string name="login_welcome">Welcome to Spotifriends</string>
+    <string name="login_instructions">Jam with your friends at the speed of life.  It\'s musical
+        chatrooms - for you, your friends, your followers, your community.  To use Spotifriends,
+        you\'ll need a Spotify account and a Facebook account.  Please log in to each
+        below to get started.</string>
+    <string name="login_step_1">Step 1:</string>
+    <string name="login_step_2">Step 2:</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="sp_token_cache_key">com.strockisdev.spotifriends.SP_TOKENCACHE_KEY</string>
 
 </resources>
