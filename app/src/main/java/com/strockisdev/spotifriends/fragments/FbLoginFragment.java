@@ -1,4 +1,4 @@
-package com.strockisdev.spotifriends;
+package com.strockisdev.spotifriends.fragments;
 
 import android.support.v4.app.Fragment;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.LoginButton;
+import com.strockisdev.spotifriends.R;
 
 import java.nio.BufferUnderflowException;
 import java.util.Arrays;
@@ -40,7 +41,6 @@ public class FbLoginFragment extends Fragment {
         LoginButton fbAuthButton = (LoginButton) view.findViewById(R.id.fb_auth_button);
         fbAuthButton.setFragment(this);
         fbAuthButton.setReadPermissions(Arrays.asList("public_profile"));
-        //TODO: Do I need to update UI here as well, or is onSessionStateChanged called?
 
         return view;
     }
@@ -59,21 +59,6 @@ public class FbLoginFragment extends Fragment {
             Log.i("MainFragment", "Logged in...");
             stepTextView.setVisibility(View.INVISIBLE);
             doneImageView.setVisibility(View.VISIBLE);
-
-//            SpTokenCache tokenCache = new SpTokenCache(getActivity());
-//            if (tokenCache.getAccessToken() != null) {
-//                TimerTask task = new TimerTask() {
-//                    @Override
-//                    public void run() {
-//                        Intent newIntent = new Intent(
-//                                FbLoginFragment.this.getActivity(), MainActivity.class);
-//                        startActivity(newIntent);
-//                    }
-//                };
-//                Timer t = new Timer();
-//                t.schedule(task, 5000);
-//            }
-
         } else if (state.isClosed()) {
             stepTextView.setVisibility(View.VISIBLE);
             doneImageView.setVisibility(View.INVISIBLE);

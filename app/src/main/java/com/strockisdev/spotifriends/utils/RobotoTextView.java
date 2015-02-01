@@ -1,10 +1,12 @@
-package com.strockisdev.spotifriends;
+package com.strockisdev.spotifriends.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
+import com.strockisdev.spotifriends.R;
 
 /**
  * Created by dastrock on 10/12/2014.

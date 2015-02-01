@@ -18,5 +18,23 @@
     <string name="login_step_2">Step 2:</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="sp_token_cache_key">com.strockisdev.spotifriends.SP_TOKENCACHE_KEY</string>
+    <string name="title_activity_no_connection">NoConnectionActivity</string>
+    <string name="connection_lost">Connection Lost</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="network_preferences">Network</string>
+    <string name="mobile_data_pref_title">Mobile Data Usage</string>
+    <string name="mobile_data_pref_summary_true">Use Wi-Fi Only</string>
+    <string name="mobile_data_pref_summary_false">Use Mobile Data or Wi-Fi</string>
+    <string-array name="mobile_data_pref_list">
+        <item>Use Wi-Fi Only</item>
+        <item>Use Wi-Fi or Mobile Data</item>
+    </string-array>
+    <string-array name="mobile_data_pref_vals">
+        <item>True</item>
+        <item>False</item>
+    </string-array>
+    <string name="mobile_data_pref_dialog_title">Choose Network Setting</string>
+    <string name="mobile_data_pref_vals_default">True</string>
+    <string name="backend_token_path">/login/facebook</string>
 
 </resources>

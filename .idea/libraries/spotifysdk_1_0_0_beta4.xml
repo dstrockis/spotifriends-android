@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.spotify.sdk/spotifysdk/1.0.0-beta4/res" />
       <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.spotify.sdk/spotifysdk/1.0.0-beta4/classes.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.spotify.sdk/spotifysdk/1.0.0-beta4/libs/jnihelpers-1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

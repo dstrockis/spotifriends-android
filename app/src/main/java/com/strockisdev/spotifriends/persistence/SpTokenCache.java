@@ -1,7 +1,9 @@
-package com.strockisdev.spotifriends;
+package com.strockisdev.spotifriends.persistence;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.strockisdev.spotifriends.R;
 
 /**
  * Created by dastrock on 10/12/2014.

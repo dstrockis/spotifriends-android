@@ -29,7 +29,7 @@
             android:paddingRight="@dimen/button_large_padding"
             android:paddingLeft="@dimen/button_large_padding">
 
-            <com.strockisdev.spotifriends.RobotoTextView
+            <com.strockisdev.spotifriends.utils.RobotoTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/login_welcome"
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
-                    <com.strockisdev.spotifriends.RobotoTextView
+                    <com.strockisdev.spotifriends.utils.RobotoTextView
                         android:id="@+id/fb_auth_step_1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -148,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
-                    <com.strockisdev.spotifriends.RobotoTextView
+                    <com.strockisdev.spotifriends.utils.RobotoTextView
                         android:id="@+id/sp_auth_step_2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

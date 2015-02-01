@@ -1,8 +1,15 @@
-package com.strockisdev.spotifriends;
+package com.strockisdev.spotifriends.activities;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,9 +17,12 @@ import android.view.MenuItem;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
+import com.strockisdev.spotifriends.R;
+import com.strockisdev.spotifriends.persistence.SpTokenCache;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+        implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private UiLifecycleHelper uiLifecycleHelper;
     private Session.StatusCallback callback = new Session.StatusCallback() {
@@ -21,16 +31,37 @@ public class MainActivity extends Activity {
             onSessionStateChange(session, state, exception);
         }
     };
+    private SpTokenCache spCache;
+    private NetworkReceiver networkReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         uiLifecycleHelper = new UiLifecycleHelper(this, callback);
         uiLifecycleHelper.onCreate(savedInstanceState);
 
-//        Session.getActiveSession().getAccessToken()
+        // Registers BroadcastReceiver to track network connection changes.
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        networkReceiver = new NetworkReceiver();
+        this.registerReceiver(networkReceiver, filter);
+
+        // If we don't have both tokens
+        spCache = new SpTokenCache(this);
+
+        // For testing
+        spCache.clearTokenCache();
+
+        String spToken = spCache.getAccessToken();
+        String fbToken = Session.getActiveSession().getAccessToken();
+        if (spToken == null || fbToken == null || fbToken.length() == 0) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     @Override
@@ -47,6 +78,8 @@ public class MainActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -62,18 +95,29 @@ public class MainActivity extends Activity {
         }
 
         uiLifecycleHelper.onResume();
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         uiLifecycleHelper.onResume();
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         uiLifecycleHelper.onResume();
+
+        // Unregisters BroadcastReceiver when app is destroyed.
+        if (networkReceiver != null) {
+            this.unregisterReceiver(networkReceiver);
+        }
     }
 
     @Override
@@ -99,6 +143,30 @@ public class MainActivity extends Activity {
         }
         if (state.isClosed()) {
             Log.i("MainActivity", "Logged out...");
+        }
+    }
+
+    ///////////////////////////////////////
+    //////// Network Connectivity
+    ///////////////////////////////////////
+
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(SettingsActivity.KEY_NETWORK_PREF)) {
+            String value = sharedPreferences.getString(SettingsActivity.KEY_NETWORK_PREF, "True");
+            // TODO: Handle Network Preference Changes
+        }
+
+    }
+
+    public class NetworkReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            ConnectivityManager conn =  (ConnectivityManager)
+                    context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = conn.getActiveNetworkInfo();
+
+            // TODO: Handle Network Connectivity Changes
         }
     }
 }
