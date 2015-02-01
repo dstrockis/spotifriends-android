@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="TransparentActionBarTheme" parent="android:Theme.Holo">
+        <!-- Customize your theme here. -->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:actionBarStyle">@style/TransparentActionBar</item>
+        <item name="android:windowBackground">@drawable/mammoth</item>
+    </style>
+
+    <style name="NoActionBarTheme" parent="android:Theme.Holo.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@drawable/mammoth</item>
+    </style>
+
+    <!--ActionBar styles-->
+    <style name="TransparentActionBar" parent="android:Widget.Holo.ActionBar">
+        <item name="android:background">@drawable/actionbar_gradient</item>
+    </style>
+
+    <style name="SettingsDefaultTheme" parent="android:Theme.Holo" />
+</resources>
